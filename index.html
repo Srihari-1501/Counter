@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unique User Counter</title>
+</head>
+<body>
+    <p id="counter-display">Counter: <span id="counter-value">10</span></p>
+    <button id="your-link">Click Me</button>
+
+    <script>
+        // Initialize the counter value
+        let counter = parseInt(localStorage.getItem('counter')) || 10;
+        document.getElementById('counter-value').textContent = counter;
+
+        document.getElementById('your-link').addEventListener('click', function() {
+            // Check if the user has already clicked
+            if (!localStorage.getItem('hasClicked')) {
+                // Decrease the counter
+                counter--;
+                localStorage.setItem('counter', counter);
+                localStorage.setItem('hasClicked', 'true'); // Mark as clicked
+
+                // Update the displayed counter
+                document.getElementById('counter-value').textContent = counter;
+
+                // Optional: Notify the user
+                alert('Counter decreased! New value: ' + counter);
+            } else {
+                alert('You have already clicked this link.');
+            }
+        });
+    </script>
+</body>
+</html>
